@@ -18,3 +18,8 @@ footer{
     width: 100%;
     
 }
+#myChart{
+    width: 70% !important;
+    height: 70% !important;
+    
+}

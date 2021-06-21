@@ -13,7 +13,10 @@ let leftIndex; //storing the img
 let rightIndex;
 let centerIndex;
 let allImages = [];
-
+let arrOfnames = [];
+let arrOfVotes = [];
+let arrOfShown = [];
+var arrImages = [leftIndex,centerIndex,rightIndex ];
 
 
 function Product(name, source) {
@@ -22,6 +25,7 @@ function Product(name, source) {
     this.votes = 0;
     this.shown = 0;
     allImages.push(this);
+    arrOfnames.push(this.name);
 }
 
 console.log(allImages);
@@ -57,14 +61,22 @@ function renderThreeImages() {
     rightIndex = genrateRandomIndex();
     centerIndex = genrateRandomIndex();
 
-    while (rightIndex === leftIndex) {
-        leftIndex = genrateRandomIndex();   
-    }
 
-      while( rightIndex === centerIndex || leftIndex === centerIndex ){
+    while(leftIndex === rightIndex || leftIndex === centerIndex || centerIndex  === rightIndex ||arrImages.includes(leftIndex) || arrImages.includes(centerIndex)||arrImages.includes(rightIndex)){
+        leftIndex = genrateRandomIndex();
         centerIndex = genrateRandomIndex();
-      }
+        rightIndex = genrateRandomIndex();
 
+      };
+
+
+console.log(leftIndex,centerIndex,rightIndex)
+
+   arrImages[0]=leftIndex;
+   arrImages[1]=centerIndex;
+   arrImages[2]=rightIndex;
+
+console.log(arrImages)
     leftImage.src = allImages[leftIndex].source;
     allImages[leftIndex].shown++;
     rightImage.src = allImages[rightIndex].source;
@@ -84,8 +96,8 @@ function handleClicking(event) {
     //   console.log(event.target.id);
     counts++;
     if (maxAttempts >= counts) {
-        console.log(counts)
-        console.log(event.target)
+        // console.log(counts)
+        // console.log(event.target)
         if (event.target.id === 'left-image') {
             allImages[leftIndex].votes++;
         } else if (event.target.id === 'right-image') {
@@ -96,29 +108,34 @@ function handleClicking(event) {
         renderThreeImages();
         console.log(allImages);
     } else {
-       
-        leftImage.removeEventListener('click', handleClicking);
-        rightImage.removeEventListener('click', handleClicking);
-        centerImage.removeEventListener('click', handleClicking);
+    renderList();
+        barChart();
+
+    container.removeEventListener('click',handleClicking)
 
     }
 }
 
-let button = document .getElementById('btn');
-button.addEventListener('click',showList);
-function showList(){
-    renderList();
-    button.removeEventListener('click',showList);
-}
+// let button = document .getElementById('btn');
+// button.addEventListener('click',showList);
+// function showList(){
+//     renderList();
+//     button.removeEventListener('click',showList);
+// }
 
 
 function renderList() {
     let ul = document.getElementById('unList');
     for (let i = 0; i < allImages.length; i++) {
+        arrOfVotes.push(allImages[i].votes);
+        arrOfShown.push(allImages[i].shown);
         let li = document.createElement('li');
         ul.appendChild(li);
         li.textContent = `${allImages[i].name} it has ${allImages[i].votes} Votes ${allImages[i].shown} shown`;
     }
+    console.log(arrOfVotes)
+    console.log(arrOfShown)
+
 }
 
 function genrateRandomIndex() {
@@ -126,5 +143,33 @@ function genrateRandomIndex() {
 
 }
 
+function barChart(){
 
-// console.log(genrateRandomIndex());
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: arrOfnames,
+        datasets: [{
+            label: '# of Votes',
+            data: arrOfVotes,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+             
+            ],
+            borderWidth: 1
+         }, {
+                label:'# of Shown',
+                data: arrOfShown,
+                backgroundColor:[
+                   'rgb(155, 99, 132)',
+
+                ],
+                borderWidth: 1
+              
+        }]
+    },
+    
+
+});
+}

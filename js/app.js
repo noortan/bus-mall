@@ -52,7 +52,7 @@ console.log(allImages);
 // new Product('water-can','../img/water-can.jpg' );
 // new Product('wine-glass','../img/wine-glass.jpg' );
 for (var i = 0; i < productImage.length; i++) {
-    new Product(productName[i], `../img/${productImage[i]}`);
+    new Product(productName[i], `./../img/${productImage[i]}`);
 }
 console.log(allImages)
 
@@ -114,7 +114,7 @@ function handleClicking(event) {
     container.removeEventListener('click',handleClicking)
 
     }
-    barChart();
+    //barChart();
 }
 
  let button = document .getElementById('btn');
@@ -174,3 +174,4 @@ var myChart = new Chart(ctx, {
 
 });
 }
+barChart();

@@ -95,7 +95,7 @@ container.addEventListener('click',handleClicking);
 function handleClicking(event) {
     //   console.log(event.target.id);
     counts++;
-    if (maxAttempts >= counts) {
+    if (maxAttempts > counts) {
         // console.log(counts)
         // console.log(event.target)
         if (event.target.id === 'left-image') {
@@ -107,9 +107,10 @@ function handleClicking(event) {
         }
         renderThreeImages();
         console.log(allImages);
-    } else {
-    renderList();
+    } else if( maxAttempts== counts){
+    //renderList();
        // barChart();
+       button.disabled= false ;
 
     container.removeEventListener('click',handleClicking)
 
@@ -121,6 +122,7 @@ function handleClicking(event) {
 button.addEventListener('click',showList);
 function showList(){
   renderList();
+  barChart() ;
   button.removeEventListener('click',showList);
 }
 
@@ -174,4 +176,4 @@ var myChart = new Chart(ctx, {
 
 });
 }
-barChart();
+//barChart();

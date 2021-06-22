@@ -109,19 +109,20 @@ function handleClicking(event) {
         console.log(allImages);
     } else {
     renderList();
-        barChart();
+       // barChart();
 
     container.removeEventListener('click',handleClicking)
 
     }
+    barChart();
 }
 
-// let button = document .getElementById('btn');
-// button.addEventListener('click',showList);
-// function showList(){
-//     renderList();
-//     button.removeEventListener('click',showList);
-// }
+ let button = document .getElementById('btn');
+button.addEventListener('click',showList);
+function showList(){
+  renderList();
+  button.removeEventListener('click',showList);
+}
 
 
 function renderList() {

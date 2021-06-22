@@ -123,6 +123,7 @@ button.addEventListener('click',showList);
 function showList(){
   renderList();
   barChart() ;
+  set() ;
   button.removeEventListener('click',showList);
 }
 
@@ -176,4 +177,19 @@ var myChart = new Chart(ctx, {
 
 });
 }
-//barChart();
+
+function set() {
+    var productObjectStorage = JSON.stringify(allImages);
+    localStorage.setItem('set1', productObjectStorage);
+  }
+  
+  function get() {
+    var set1 = localStorage.getItem('set1');
+    if (set1 !== null) {
+        allImages = JSON.parse('set1');
+    // renderList();
+     
+    }
+  }
+  //set() ;
+  get();

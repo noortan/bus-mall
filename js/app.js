@@ -130,8 +130,7 @@ function handleClicking(event) {
  let button = document .getElementById('button');
 button.addEventListener('click',showList);
 function showList(){
-  renderforlist();
-  chartnew() ;
+
   button.removeEventListener('click',showList);
 }
 
@@ -185,3 +184,4 @@ var myChart = new Chart(ctx, {
 
 });
 }
+

@@ -1,25 +1,34 @@
-#left-image,#center-image,#right-image{
-    height: 500px;
+#left-image{ 
+    height: 400px;
+    width: 30%;
+
+}
+#midlle-image{
+    height: 400px;
+    width: 30%;
+} 
+#right-image{
+    height: 400px;
     width: 30%;
 }
 
 main{
-    background-color: rgb(238, 245, 245);
+    background-color: #D7B19D;
 }
 
-.stylep{
+.styleme{
     font-family: 'Caveat', cursive;
     font-size: 35px;
 
 }
 footer{
     background-color: rgb(24, 22, 26);
-    color: rgb(233, 160, 240);
+    color:#FF94CC;
     width: 100%;
     
 }
-#myChart{
-    width: 70% !important;
-    height: 70% !important;
+#Chart{
+    width: 80% !important;
+    height: 80% !important;
     
 }
